@@ -1,0 +1,102 @@
+.container{
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 17vh;
+    box-shadow: 0 5px 8px 0 rgba(0,0,0,.2);
+    background-color: #F4F5F6;
+}
+
+.aramisLogo{
+    width: 17rem;
+    height: 5rem;
+    cursor: pointer;
+}
+
+.search{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.form{
+    display: flex;
+    flex-direction: row;
+}
+
+.input{
+    width: 30rem;
+    border: none;
+    background-color: #e3e3e3;
+    height: 2.5rem;
+    border-radius: .4rem 0 0 .4rem;
+    outline: none;
+
+    font-family: 'Montserrat';
+    text-indent: 1rem;
+}
+
+.input::placeholder{
+    color: #20613F;
+    font-size: 1rem;
+}
+
+.lupaContainer{
+    margin-left: -1rem;
+    height: 2.6rem;
+    width: 2.6rem;
+    border-radius: .4rem;
+    background-color: #20613F;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: background-color .5s;
+    cursor: pointer;
+}
+
+.lupaContainer:hover{
+    background-color: #307c55;
+}
+
+.lupa{
+    width: 1.7rem;
+    height: 1.7rem;
+    
+}
+
+.logos{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    width: fit-content;
+}
+
+.logoContainer{
+
+    height: 3rem;
+    width: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #20613F;
+    border-radius: .4rem;
+    cursor: pointer;
+    transition: background-color .5s;
+}
+
+.logoContainer:hover{
+    background-color: #307c55;
+}
+
+.logo{
+    width: 1.7rem;
+    height: 1.7rem;
+}
