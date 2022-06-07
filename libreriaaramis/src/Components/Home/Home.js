@@ -39,7 +39,7 @@ export default function Home() {
           </div>
           <div className={s.category} onClick={()=>Navigate('/Search')}>
             <img className={s.categoryIMG} src={computacion} alt='Oficina'/>
-            <div className={s.categoryLabel}>Computacion</div>
+            <div className={s.categoryLabel}>Computación</div>
           </div>
           <div className={s.category} onClick={()=>Navigate('/Search')}>
             <img className={s.categoryIMG} src={mochilas } alt='Resmas'/>

@@ -1,0 +1,33 @@
+.container{
+    width: 300px;
+    height: 100px;
+    border-radius: .4rem;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+}
+
+.img{
+    height: 80px;
+    width: auto;
+    max-width: 80px;
+    object-fit: contain;
+    cursor: pointer;
+    margin-left: 1rem;
+}
+
+.titleContainer{
+    height: 70%;
+}
+
+.title{
+    font-size: 1rem;
+    font-family: 'Montserrat';
+    font-weight: 600;
+    margin: 0;
+    color: rgb(28, 28, 28);
+}
+
