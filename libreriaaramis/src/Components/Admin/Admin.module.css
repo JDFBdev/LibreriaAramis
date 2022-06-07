@@ -53,6 +53,7 @@
 }
 
 .btnSubmit,
+.btnSubmitError,
 .btnDelete,
 .btnCancel{
     width: 100%;
@@ -66,6 +67,11 @@
     margin: 0;
     color: rgb(255, 255, 255);
     cursor: pointer;
+}
+
+.btnSubmitError{
+    cursor: not-allowed;
+    background-color: #818181;
 }
 
 .btnDelete{
