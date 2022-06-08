@@ -13,6 +13,9 @@ router.use('/editarProducto', editarProducto);
 const todosProductos = require('./todosProductos');
 router.use('/todosProductos', todosProductos);
 
+const buscarProducto = require('./buscarProducto');
+router.use('/buscarProducto', buscarProducto);
+
 /* GET home page. */
 router.get('/', (req, res) => {
   res.status(200).send(`hello world`);
