@@ -3,12 +3,17 @@ import s from './Search.module.css';
 import Navbar from "../Navbar/Navbar";
 import Card from "../Card/Card";
 import Footer from '../Footer/Footer';
+import Cart from '../Cart/Cart';
+import Transition from '../Transition/Transition';
+import { useModal } from 'react-hooks-use-modal';
+
 
 export default function Search(){
+    const [Modal, open] = useModal('root', { preventScroll: false, closeOnOverlayClick: true});
 
     return(
         <div className={s.container}>
-            <Navbar/>
+            <Navbar open={open}/>
             <div className={s.content}>
                 <h2 className={s.title}>Resultados para Lapiceras</h2>
                 <div className={s.data}>
@@ -36,6 +41,11 @@ export default function Search(){
                 </div>
             </div>
             <Footer/>
+            <Modal>
+                <Transition>
+                    <Cart/>
+                </Transition>
+            </Modal>
         </div>
     )
 }

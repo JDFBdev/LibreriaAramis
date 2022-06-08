@@ -2,3 +2,9 @@
   width: 100%;
   height: 430px;
 }
+
+.swiperSlide {
+  position: relative;
+  width: fit-content;
+
+}

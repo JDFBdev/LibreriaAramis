@@ -9,7 +9,7 @@ export default function Footer(){
 
     return (
         <div className={s.container}>
-            <img className={s.petit} src={aramis} alt='Petit Boutique Logo'/>
+            <img className={s.aramis} src={aramis} alt='Petit Boutique Logo'/>
             <p className={s.p}> 
                 Lunes a Viernes 10 - 19hs<br/>
                 Sabados 10:30 - 14:30hs

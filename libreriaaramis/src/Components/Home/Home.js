@@ -1,6 +1,8 @@
 import React from 'react';
 import s from './Home.module.css';
 import { useNavigate } from 'react-router-dom';
+import Transition from '../Transition/Transition';
+import { useModal } from 'react-hooks-use-modal';
 import Navbar from '../Navbar/Navbar';
 import SwiperMain from '../SwiperMain/SwiperMain';
 import SwiperProducts from '../SwiperProducts/SwiperProducts';
@@ -11,13 +13,16 @@ import escolar from '../../img/escolar.jpg';
 import computacion from '../../img/computacion.jpg';
 import mochilas from '../../img/mochilas.jpg';
 import Footer from '../Footer/Footer';
+import Cart from '../Cart/Cart';
 
 export default function Home() {
+
+  const [Modal, open] = useModal('root', { preventScroll: false, closeOnOverlayClick: true});
   const Navigate = useNavigate();
 
   return (
     <div style={{backgroundColor: '#F4F5F6'}}>
-      <Navbar/>
+      <Navbar open={open}/>
       <div className={s.content}>
         <SwiperMain/>
         <div className={s.categories}>
@@ -52,10 +57,15 @@ export default function Home() {
         </div>
         <div className={s.moduleContainer}>
           <h2 className={s.moduleTitle}>Av. Maipú 825, Vicente López, Buenos Aires</h2>
-          <iframe title='Maps' src="https://maps.google.com/maps?q=-34.527348126436884,-58.53490686416626&output=svembed" className={s.iframe} allowFullScreen></iframe>
+          <iframe title='Maps' src={`https://maps.google.com/maps?q=-34.527348126436884,-58.53490686416626&output=svembed`} className={s.iframe} allowFullScreen></iframe>
         </div>
         <Footer/>
       </div>
+      <Modal>
+        <Transition>
+          <Cart/>
+        </Transition>
+      </Modal>
     </div>
   );
 }

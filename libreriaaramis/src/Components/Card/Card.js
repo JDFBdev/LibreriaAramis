@@ -2,7 +2,7 @@ import React from "react";
 import s from './Card.module.css';
 import itemIMG from '../../img/itemIMG.jpg';
 
-const selector = Array.from(Array(50).keys());
+const selector = Array.from(Array(26).keys());
 selector.shift();
 
 export default function Card(){

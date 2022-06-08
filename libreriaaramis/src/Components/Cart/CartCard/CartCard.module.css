@@ -1,0 +1,71 @@
+.container{
+    width: 90%;
+    height: 80px;
+    border-radius: .4rem;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+.img{
+    height: 70%;
+    width: auto;
+    max-width: 80px;
+    object-fit: contain;
+    cursor: pointer;
+    margin-left: 1rem;
+}
+
+.data{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: .2rem;
+}
+
+.titleContainer{
+    height: 70%;
+    max-height: 45px;
+    overflow: hidden;
+    
+}
+
+.title,
+.p,
+.btnDelete{
+    font-size: .8rem;
+    font-family: 'Montserrat';
+    font-weight: 600;
+    margin: 0;
+    color: rgb(28, 28, 28);
+}
+
+.title{
+    cursor: pointer;
+}
+
+.bottom{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+}
+
+.btnDelete{
+    font-size: .8rem;
+    font-weight: 500;
+    border: none;
+    background-color: #cc4747;
+    color: white;
+    border-radius: .2rem;
+    padding-top: .1rem;
+    padding-bottom: .1rem;
+    padding-left: .3rem;
+    padding-right: .3rem;
+    cursor: pointer;
+}
+
+
