@@ -24,6 +24,29 @@
   -webkit-align-items: center;
   align-items: center;
 
-  height: 20rem;
+}
+
+@media (max-width: 850px) {
+
+  .swiper{
+    height: 15rem;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .swiper{
+    height: 12rem;
+  }
+
+}
+
+@media (max-width: 450px) {
+
+  .swiper{
+    height: 10rem;
+  }
 
 }

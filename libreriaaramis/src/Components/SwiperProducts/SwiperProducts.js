@@ -16,8 +16,8 @@ export default function SwiperProducts() {
   return (
     <>
       <Swiper
-        slidesPerView={5}
-        spaceBetween={25}
+        slidesPerView={'auto'}
+        spaceBetween={18}
         freeMode={true}
         pagination={{
           clickable: true,
@@ -25,15 +25,15 @@ export default function SwiperProducts() {
         modules={[FreeMode, Pagination]}
         className={s.swiper}
       >
-        <SwiperSlide><Card/></SwiperSlide>
-        <SwiperSlide><Card/></SwiperSlide>
-        <SwiperSlide><Card/></SwiperSlide>
-        <SwiperSlide><Card/></SwiperSlide>
-        <SwiperSlide><Card/></SwiperSlide>
-        <SwiperSlide><Card/></SwiperSlide>
-        <SwiperSlide><Card/></SwiperSlide>
-        <SwiperSlide><Card/></SwiperSlide>
-        <SwiperSlide><Card/></SwiperSlide>
+        <SwiperSlide className={s.swiperSlide}><Card/></SwiperSlide>
+        <SwiperSlide className={s.swiperSlide}><Card/></SwiperSlide>
+        <SwiperSlide className={s.swiperSlide}><Card/></SwiperSlide>
+        <SwiperSlide className={s.swiperSlide}><Card/></SwiperSlide>
+        <SwiperSlide className={s.swiperSlide}><Card/></SwiperSlide>
+        <SwiperSlide className={s.swiperSlide}><Card/></SwiperSlide>
+        <SwiperSlide className={s.swiperSlide}><Card/></SwiperSlide>
+        <SwiperSlide className={s.swiperSlide}><Card/></SwiperSlide>
+        <SwiperSlide className={s.swiperSlide}><Card/></SwiperSlide>
       </Swiper>
     </>
   );

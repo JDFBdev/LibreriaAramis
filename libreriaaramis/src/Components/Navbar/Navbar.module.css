@@ -9,9 +9,18 @@
     background-color: #F4F5F6;
 }
 
+.content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 65vw;
+    gap: 1rem;
+}
+
 .aramisLogo{
     width: 17rem;
-    height: 5rem;
+    aspect-ratio: 16/5;
     cursor: pointer;
 }
 
@@ -79,8 +88,8 @@
 
 .logoContainer{
 
-    height: 3rem;
-    width: 3rem;
+    height: 2.6rem;
+    aspect-ratio: 1/1;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -99,4 +108,63 @@
 .logo{
     width: 1.7rem;
     height: 1.7rem;
+}
+
+@media (max-width: 1200px) {
+
+    .aramisLogo{
+        width: 13rem;
+    }
+
+    .input{
+        width: 20rem;
+    }
+
+}
+
+@media (max-width: 900px) {
+
+    .container{
+        height: 10rem;
+    }
+
+    .aramisLogo{
+        width: 12rem;
+    }
+
+    .logoContainer:nth-child(1){
+        display: none;
+    }
+
+    .logoContainer:nth-child(2){
+        display: none;
+    }
+
+}
+
+@media (max-width: 700px) {
+
+    .input{
+        width: 15rem;
+    }
+
+}
+
+@media (max-width: 550px) {
+    .container{
+        flex-direction: column;
+        justify-content: center;
+        gap: 1rem
+    }
+}
+
+@media (max-width: 360px) {
+    
+    .input{
+        width: 12rem;
+    }
+
+    .input::placeholder {
+        font-size: .8rem;
+    }
 }
