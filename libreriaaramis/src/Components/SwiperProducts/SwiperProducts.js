@@ -12,7 +12,7 @@ import "swiper/css/pagination";
 // import required modules
 import { FreeMode, Pagination } from "swiper";
 
-export default function SwiperProducts() {
+export default function SwiperProducts({products}) {
   return (
     <>
       <Swiper
@@ -25,15 +25,13 @@ export default function SwiperProducts() {
         modules={[FreeMode, Pagination]}
         className={s.swiper}
       >
-        <SwiperSlide className={s.swiperSlide}><Card/></SwiperSlide>
-        <SwiperSlide className={s.swiperSlide}><Card/></SwiperSlide>
-        <SwiperSlide className={s.swiperSlide}><Card/></SwiperSlide>
-        <SwiperSlide className={s.swiperSlide}><Card/></SwiperSlide>
-        <SwiperSlide className={s.swiperSlide}><Card/></SwiperSlide>
-        <SwiperSlide className={s.swiperSlide}><Card/></SwiperSlide>
-        <SwiperSlide className={s.swiperSlide}><Card/></SwiperSlide>
-        <SwiperSlide className={s.swiperSlide}><Card/></SwiperSlide>
-        <SwiperSlide className={s.swiperSlide}><Card/></SwiperSlide>
+        {
+          products?.map((p)=>{
+            return <SwiperSlide className={s.swiperSlide}><Card product={p}/></SwiperSlide>
+          })
+        }
+        
+
       </Swiper>
     </>
   );
