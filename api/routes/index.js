@@ -10,6 +10,9 @@ router.use('/borrarProducto', borrarProducto);
 const editarProducto = require('./editarProducto');
 router.use('/editarProducto', editarProducto);
 
+const todosProductos = require('./todosProductos');
+router.use('/todosProductos', todosProductos);
+
 /* GET home page. */
 router.get('/', (req, res) => {
   res.status(200).send(`hello world`);
