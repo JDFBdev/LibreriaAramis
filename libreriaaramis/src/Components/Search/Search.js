@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import s from './Search.module.css';
 import Navbar from "../Navbar/Navbar";
 import Card from "../Card/Card";
@@ -6,10 +6,21 @@ import Footer from '../Footer/Footer';
 import Cart from '../Cart/Cart';
 import Transition from '../Transition/Transition';
 import { useModal } from 'react-hooks-use-modal';
+import axios from 'axios';
 
 
 export default function Search(){
+    const [products, setProducts] = useState([]);
     const [Modal, open] = useModal('root', { preventScroll: false, closeOnOverlayClick: true});
+
+    useEffect(()=>{
+        async function fetchData() {
+            let promise = await axios.get(`http://localhost:3001/todosProductos`)
+            let response = promise.data;
+            setProducts(response);
+        }
+        fetchData();
+    },[])
 
     return(
         <div className={s.container}>
@@ -27,16 +38,11 @@ export default function Search(){
                         </select>
                     </div>
                     <div className={s.cards}>
-                        <Card/>
-                        <Card/>
-                        <Card/>
-                        <Card/>
-                        <Card/>
-                        <Card/>
-                        <Card/>
-                        <Card/>
-                        <Card/>
-                        <Card/>
+                        {
+                            products?.map((p)=>{
+                                return <Card product={p} />
+                            })
+                        }
                     </div>
                 </div>
             </div>

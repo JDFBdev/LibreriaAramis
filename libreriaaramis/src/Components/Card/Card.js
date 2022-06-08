@@ -1,21 +1,28 @@
 import React from "react";
 import s from './Card.module.css';
-import itemIMG from '../../img/itemIMG.jpg';
 
 const selector = Array.from(Array(26).keys());
 selector.shift();
 
-export default function Card(){
+export default function Card({product}){
 
     return(
         <div className={s.container}>
             <div className={s.imgContainer}>
-                <img className={s.img} src={itemIMG} alt='item img'/>
+                {
+                    product && product.imagen ?
+                    <img className={s.img} src={product.imagen} alt='item img'/> :
+                    null
+                }
             </div>
             <div className={s.content}>
                 <div className={s.data}>
                     <div className={s.titleContainer}>
-                        <h4 className={s.title}>Lapiceras 5 Colores Faber Castel</h4>
+                    {
+                        product ? 
+                        <h4 className={s.title}>{product.nombre}</h4>:
+                        <h4 className={s.title}></h4>
+                    }
                     </div>
                     <select className={s.selector}>
                         {
