@@ -24,14 +24,14 @@ export default function Navbar({open}) {
                 </form>
             </div>
             <div className={s.logos}>
-                <div className={s.logoContainer}>
-                    <img className={s.logo} src={Insta} alt='Instagram Logo' onClick={() => {window.open('https://www.instagram.com/libreriaaramis/','_blank')}}/>
+                <div className={s.logoContainer} onClick={() => {window.open('https://www.instagram.com/libreriaaramis/','_blank')}}>
+                    <img className={s.logo} src={Insta} alt='Instagram Logo'/>
                 </div> 
-                <div className={s.logoContainer}>
-                    <img className={s.logo} src={Wpp} alt='Whatsapp Logo' onClick={() => {window.open('https://api.whatsapp.com/send?phone=+5491168803383&text=Buen día!&app_absent=0','_blank')}}/>
+                <div className={s.logoContainer} onClick={() => {window.open('https://api.whatsapp.com/send?phone=+5491168803383&text=Buen día!&app_absent=0','_blank')}}>
+                    <img className={s.logo} src={Wpp} alt='Whatsapp Logo' />
                 </div>
-                <div className={s.logoContainer}>
-                    <img className={s.logo} src={Cart} alt='Cart Logo' onClick={open}/>
+                <div className={s.logoContainer} onClick={open}>
+                    <img className={s.logo} src={Cart} alt='Cart Logo' />
                 </div>
             </div>
         </div>

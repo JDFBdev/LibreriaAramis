@@ -8,14 +8,15 @@ import Transition from '../Transition/Transition';
 import { useModal } from 'react-hooks-use-modal';
 import axios from 'axios';
 
-
 export default function Search(){
     const [products, setProducts] = useState([]);
     const [Modal, open] = useModal('root', { preventScroll: false, closeOnOverlayClick: true});
+    const skeletonCards = [0,1,2,3,4,5,6,7,8,9];
 
     useEffect(()=>{
+        window.scrollTo(0, 0);
         async function fetchData() {
-            let promise = await axios.get(`http://localhost:3001/todosProductos`)
+            let promise = await axios.get(`https://aramis-backend.herokuapp.com/todosProductos`)
             let response = promise.data;
             setProducts(response);
         }
@@ -39,8 +40,20 @@ export default function Search(){
                     </div>
                     <div className={s.cards}>
                         {
+                            products[0] ? 
                             products?.map((p)=>{
-                                return <Card product={p} />
+                                return <Card key={p.id} product={p} />
+                            }) :
+                            skeletonCards.map((p, i)=>{
+                                return (
+                                     <Transition key={i} timeout={i*50} >
+                                        <div  className={s.skeletonCard} >
+                                            <div className={s.skeletonImg}/>
+                                            <div className={s.skeletonTitle}/>
+                                            <div className={s.skeletonTitle2}/>
+                                        </div>
+                                    </Transition>
+                                )
                             })
                         }
                     </div>

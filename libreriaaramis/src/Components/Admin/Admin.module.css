@@ -51,6 +51,36 @@
 
     font-family: 'Montserrat';
     text-indent: 1rem;
+    overflow: hidden;
+}
+
+/* .file{
+    cursor: pointer;
+    font-family: 'Montserrat';
+    margin-left: -9.3rem;
+    margin-top: .3rem;
+    width: 30rem;
+    height: 5rem;
+} */
+
+.file::-webkit-file-upload-button {
+    visibility: hidden;
+}
+.file::before {
+    width: 500px;
+    content: 'Seleccionar Archivo';
+    display: inline-block;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 5px;
+    margin-top: 3px;
+    outline: none;
+    white-space: nowrap;
+    user-select: none;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 10pt;
+    font-family: 'Montserrat';
 }
 
 .btnSubmit,
@@ -119,7 +149,52 @@
     margin-bottom: 5rem;
 }
 
-.modalTitle{
+.skeletonCard{
+    width: 300px;
+    height: 100px;
+    border-radius: .4rem;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.115), 0 5px 5px rgba(0, 0, 0, 0.132);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 1rem;
+    background: 
+    linear-gradient(0.25turn, transparent, rgb(240, 240, 240), transparent),
+    linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)),
+    radial-gradient(38px circle at 19px 19px, #eee 50%, transparent 51%),
+    linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255));  
+    background-repeat: no-repeat;
+    background-size: 315px 250px, 315px 180px, 100px 100px, 225px 30px; 
+    background-position: -315px 0, 0 0, 0px 190px, 50px 195px; 
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {  
+    to {
+      background-position: 315px 0, 0 0, 0 190px, 50px 195px;
+    }
+  }
+
+.skeletonImg{
+    height: 80px;
+    width: 80px;
+    background-color: #e9e9e9;
+    border-radius: .4rem;
+    margin-left: 1rem;
+    margin-top: 10px;
+}
+
+.skeletonTitle{
+    height: 25px;
+    width: 150px;
+    background-color: #e9e9e9;
+    border-radius: .4rem;
+    margin-top: 15px;
+}
+
+.modalTitle,
+.moduleTitle{
     font-size: 1.5rem;
     font-family: 'Montserrat';
     font-weight: 600;
@@ -127,9 +202,31 @@
     color: rgb(0, 0, 0);
 }
 
-.btnCancel{
-    background-color: rgb(181, 181, 181);
+.moduleTitle{
+    font-size: 2rem;
 }
+
+.btnCancel{
+    background-color: #20613F;
+}
+
+
+.loadingDiv{
+    width: 150px;
+    height: 150px;
+    background-color: white;
+    border-radius: .4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.loadingGif{
+    height: 80px;
+    width: auto;
+}
+
 
 @media (max-width: 1350px) {
     .cards{

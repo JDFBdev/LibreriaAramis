@@ -23,8 +23,9 @@
     height: 100%;
     aspect-ratio: 1/1;
     overflow: hidden;
-    border-radius: .8rem;
+    border-radius: .4rem;
     cursor: pointer;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.115), 0 5px 5px rgba(0, 0, 0, 0.132);
 }
 
 .categoryIMG{
@@ -84,7 +85,8 @@
     max-width: 1200px;
     aspect-ratio: 16/8;
     border: none;
-    border-radius: 1rem;
+    border-radius: .4rem;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.115), 0 5px 5px rgba(0, 0, 0, 0.132);
 }
 
 @media (max-width: 650px) {
