@@ -2,7 +2,8 @@
   width: 90%;
   max-width: 1200px;
   height: 20rem;
-  border-radius: .8rem;
+  border-radius: .4rem;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.115), 0 5px 5px rgba(0, 0, 0, 0.132);
 }
 
 .swiperSlide {

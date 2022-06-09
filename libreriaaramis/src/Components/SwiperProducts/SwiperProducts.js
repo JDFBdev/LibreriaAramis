@@ -13,6 +13,8 @@ import "swiper/css/pagination";
 import { FreeMode, Pagination } from "swiper";
 
 export default function SwiperProducts({products}) {
+  const skeletonCards = [0,1,2,3,4]
+
   return (
     <>
       <Swiper
@@ -25,13 +27,23 @@ export default function SwiperProducts({products}) {
         modules={[FreeMode, Pagination]}
         className={s.swiper}
       >
-        {
-          products?.map((p)=>{
-            return <SwiperSlide className={s.swiperSlide}><Card product={p}/></SwiperSlide>
+        { 
+          products[0] ?
+          products?.map((p, i)=>{
+            return <SwiperSlide key={i} className={s.swiperSlide}><Card product={p}/></SwiperSlide>
+          }) :
+          skeletonCards.map((p, i)=>{
+            return (
+              <SwiperSlide key={i} className={s.swiperSlide}>
+                <div key={i} className={s.skeletonCard} >
+                    <div className={s.skeletonImg}/>
+                    <div className={s.skeletonTitle}/>
+                    <div className={s.skeletonTitle2}/>
+                </div>
+              </SwiperSlide>
+            )
           })
         }
-        
-
       </Swiper>
     </>
   );

@@ -8,6 +8,7 @@
     align-items: center;
     gap: 1rem;
     cursor: pointer;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.115), 0 5px 5px rgba(0, 0, 0, 0.132);
 }
 
 .img{
@@ -21,6 +22,8 @@
 
 .titleContainer{
     height: 70%;
+    max-width: 170px;
+    overflow: hidden;
 }
 
 .title{

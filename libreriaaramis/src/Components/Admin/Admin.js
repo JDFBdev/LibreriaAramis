@@ -5,7 +5,7 @@ import Transition from '../Transition/Transition';
 import { useModal } from 'react-hooks-use-modal';
 import Logo from '../../img/Aramis.png';
 import Card from "../Card/Card";
-import Lupa from '../../img/lupa.png';
+import loading from '../../img/loading.gif';
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../Firebase/Firebase";
 import toast from 'react-hot-toast';
@@ -19,23 +19,26 @@ export default function Admin(){
     const [selectedImagePreview, setSelectedImagePreview] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
     const [products, setProducts] = useState([]);
+    const [skeletonCards] = useState([1,2,3,4,5,6,7,8]);
     const [Modal, open] = useModal('root', { preventScroll: true, closeOnOverlayClick: true});
     const [ModalDelete, openDelete, closeDelete] = useModal('root', { preventScroll: true, closeOnOverlayClick: true});
+    const [ModalLoading, openLoading, closeLoading] = useModal('root', { preventScroll: true, closeOnOverlayClick: false});
 
-    useEffect(()=>{
+    useEffect(()=>{  // Obtengo data de productos
+        window.scrollTo(0, 0);
         async function fetchData() {
-            let promise = await axios.get(`http://localhost:3001/todosProductos`)
+            let promise = await axios.get(`https://aramis-backend.herokuapp.com/todosProductos`)
             let response = promise.data;
             setProducts(response);
         }
         fetchData();
     },[])
 
-    const handleInput = function(e){
+    const handleInput = function(e){  // Estado de inputs
         setInput(prevInput => ({...prevInput, [e.target.id]:e.target.value}));
     }
 
-    const handleFile = function(e){
+    const handleFile = function(e){  // Guardo la imagen en un estado y seteo el preview
         if(e.target.files[0]){
             setInput(prev=>({...prev, file: e.target.files[0]}));
             setImagePreview(URL.createObjectURL(e.target.files[0]));
@@ -43,7 +46,7 @@ export default function Admin(){
 
     }
 
-    const handleSelectedFile = function(e){
+    const handleSelectedFile = function(e){   // Guardo la imagen a modificar en un estado y seteo el preview
         if(e.target.files[0]){
             setSelected(prev=>({...prev, file: e.target.files[0]}));
             setSelectedImagePreview(URL.createObjectURL(e.target.files[0]));
@@ -51,8 +54,10 @@ export default function Admin(){
 
     }
 
-    const handleCreate = function(e){
+    const handleCreate = function(e){  // Posteo la imagen a firebase, despues se activa el useffect de abajo
         e.preventDefault();
+        openLoading();
+
         if (input.file === '') return;
         const imageRef = ref(storage, `images/${input.file.name}`);
         uploadBytes(imageRef, input.file).then((snapshot) => {
@@ -60,30 +65,28 @@ export default function Admin(){
             setUrl(url);
         });
         });
-        console.log('creando')
     }
 
-    useEffect(()=>{
+    useEffect(()=>{  // Si se guardo la imagen de firebase, vamos a handleSubmit
         if ( url && url !== '' ) hanldeSubmit();
     },[url])
 
-    useEffect(()=>{
-        if ( modifyUrl && modifyUrl !== '' ) hanldeSubmitModificar(true);
-    },[modifyUrl])
+    const hanldeSubmit = async function(){  // Posteamos el producto
 
-    const hanldeSubmit = async function(){
-
-        let promise = await axios.post(`http://localhost:3001/crearProducto`,{
+        let promise = await axios.post(`https://aramis-backend.herokuapp.com/crearProducto`,{
             nombre: input.title,
             imagen: url,
             categoria: input.category
         })
         let response = promise.data;
         if (!response.success){
+            closeLoading();
             toast.error('Error al registrar el producto');
             console.log(response.err);
+            
         }
         else{
+            closeLoading();
             toast.success('Producto registrado correctamente');
             setTimeout(() => {
                 window.location.reload();
@@ -92,8 +95,10 @@ export default function Admin(){
         
     }
 
-    const handleMofidicar = async function(e){
+    const handleMofidicar = async function(e){  // Si no hay imagen que modificar, posteamos el cambio, si hay, la subimos a firebase
         e.preventDefault();
+        openLoading();
+
         if(selected.file === ''){
             hanldeSubmitModificar(false);
         }else{
@@ -106,9 +111,13 @@ export default function Admin(){
         }
     }
 
-    const hanldeSubmitModificar = async function(image){
+    useEffect(()=>{  // Si se subio la imagen a modificar a firebase, vamos al submit
+        if ( modifyUrl && modifyUrl !== '' ) hanldeSubmitModificar(true);
+    },[modifyUrl])
 
-        let promise = await axios.post(`http://localhost:3001/editarProducto`,{
+    const hanldeSubmitModificar = async function(image){  // Posteamos el cambio, con imagen anterior o con imagen nueva
+
+        let promise = await axios.post(`https://aramis-backend.herokuapp.com/editarProducto`,{
             nombre: selected.nombre,
             imagen: image ? modifyUrl : selected.imagen,
             categoria: selected.categoria,
@@ -116,10 +125,12 @@ export default function Admin(){
         })
         let response = promise.data;
         if (!response.success){
+            closeLoading();
             toast.error('Error al modificar el producto');
             console.log(response.err);
         }
         else{
+            closeLoading();
             toast.success('Producto modificado correctamente');
             setTimeout(() => {
                 window.location.reload();
@@ -127,17 +138,20 @@ export default function Admin(){
         }
     }
 
-    const handleDelete = async function(e){
+    const handleDelete = async function(e){  // Borramos el producto
         e.preventDefault();
-        let promise = await axios.post(`http://localhost:3001/borrarProducto`,{
+        openLoading();
+        let promise = await axios.post(`https://aramis-backend.herokuapp.com/borrarProducto`,{
             id: selected.id
         })
         let response = promise.data;
         if (!response.success){
+            closeLoading();
             toast.error('Error al eliminar el producto');
             console.log(response.err);
         }
         else{
+            closeLoading();
             toast.success('Producto eliminado correctamente');
             setTimeout(() => {
                 window.location.reload();
@@ -148,11 +162,12 @@ export default function Admin(){
     return(
         <div className={s.container}>
             <img className={s.aramisLogo} src={Logo} alt='Aramis Logo'/>
+            <h1 className={s.moduleTitle}>Crear Producto</h1>
             <div className={s.create}>
                 <form className={s.form} onSubmit={handleCreate}>
                     <input className={s.input} id='title' type='text' placeholder="Titulo..." onChange={handleInput}/>
                     <select className={s.input} id='category' onChange={handleInput}>
-                        <option value='default'>Seleccionar</option>
+                        <option value='default'>Seleccionar Categoria</option>
                         <option value='Escritura'>Escritura</option>
                         <option value='Oficina'>Oficina</option>
                         <option value='Resmas'>Resmas</option>
@@ -166,7 +181,7 @@ export default function Admin(){
                     {
                         ((input.title && input.file && input.category && input.title !== '' && input.file !== '' && input.category !== '' && input.category !== 'default')) ?
                         <button className={s.btnSubmit} type='submit'>Crear Producto</button>:
-                        <button className={s.btnSubmitError} onClick={()=>{}}>Crear Producto</button>
+                        <button className={s.btnSubmitError} type='button' onClick={()=>{}}>Crear Producto</button>
                     }
                 </form>
                 <Card product={{nombre: input.title, imagen: imagePreview}}/>
@@ -179,10 +194,19 @@ export default function Admin(){
                     </div>
                 </form>
             </div> */}
+            <h1 className={s.moduleTitle}>Todos los Productos</h1>
             <div className={s.cards}>
                 {
-                    products?.map((p)=>{
-                        return <AdminCard product={p} open={open} setSelected={setSelected} setSelectedImagePreview={setSelectedImagePreview}/>
+                    products[0] ?
+                    products?.map((p, i)=>{
+                        return <Transition key={p.id} timeout={i*50}><AdminCard product={p} open={open} setSelected={setSelected} setSelectedImagePreview={setSelectedImagePreview}/></Transition>
+                    }) : 
+                    skeletonCards.map((p, i)=>{
+                        return <Transition key={i} timeout={i*50}>
+                        <div className={s.skeletonCard} >
+                            <div className={s.skeletonImg}/>
+                            <div className={s.skeletonTitle}/>
+                        </div></Transition>
                     })
                 }
             </div>
@@ -203,7 +227,8 @@ export default function Admin(){
                             <div className={s.fileWrapper}>
                                 <input className={s.file} type='file' id='file' onChange={handleSelectedFile} />
                             </div>
-                            <button className={s.btnDelete} type='submit' onClick={(e)=>{e.preventDefault(); openDelete();}}>Eliminar Producto</button>
+                            
+                            <button className={s.btnDelete} onClick={(e)=>{e.preventDefault(); openDelete();}}>Eliminar Producto</button>
                             <button className={s.btnSubmit} type='submit' onClick={handleMofidicar}>Modificar Producto</button>
                         </form>
                         <Card product={{...selected, imagen: selectedImagePreview ? selectedImagePreview : selected.imagen}}/>
@@ -219,6 +244,13 @@ export default function Admin(){
                     </div>
                 </Transition>
             </ModalDelete>
+            <ModalLoading>
+                <Transition>
+                    <div className={s.loadingDiv}>
+                        <img className={s.loadingGif} src={loading} alt='Loading gif' />
+                    </div>
+                </Transition>
+            </ModalLoading>
         </div>
     )
 }
