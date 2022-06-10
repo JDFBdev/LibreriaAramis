@@ -10,6 +10,8 @@ export default function Card({product, disableCart}){
 
     const handleCarrito = function(){
 
+        console.log(disableCart)
+
         if (!disableCart){
             let productsCart = [];
 
