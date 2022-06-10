@@ -184,7 +184,7 @@ export default function Admin(){
                         <button className={s.btnSubmitError} type='button' onClick={()=>{}}>Crear Producto</button>
                     }
                 </form>
-                <Card product={{nombre: input.title, imagen: imagePreview}}/>
+                <Card product={{nombre: input.title, imagen: imagePreview}} disableCart={true}/>
             </div>
             {/* <div className={s.browser}>
                 <form className={s.search}>
@@ -231,7 +231,7 @@ export default function Admin(){
                             <button className={s.btnDelete} onClick={(e)=>{e.preventDefault(); openDelete();}}>Eliminar Producto</button>
                             <button className={s.btnSubmit} type='submit' onClick={handleMofidicar}>Modificar Producto</button>
                         </form>
-                        <Card product={{...selected, imagen: selectedImagePreview ? selectedImagePreview : selected.imagen}}/>
+                        <Card product={{...selected, imagen: selectedImagePreview ? selectedImagePreview : selected.imagen}} disableCart={true}/>
                     </div>
                 </Transition>
             </Modal>

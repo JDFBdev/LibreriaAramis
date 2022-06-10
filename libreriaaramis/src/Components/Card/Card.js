@@ -5,33 +5,37 @@ import toast from 'react-hot-toast';
 const selector = Array.from(Array(26).keys());
 selector.shift();
 
-export default function Card({product}){
+export default function Card({product, disableCart}){
     const [amount, setAmount] = useState(1)
 
     const handleCarrito = function(){
-        let productsCart = [];
 
-        if (localStorage.getItem('order')) {            // Si hay algo en el localStorage
-            productsCart = localStorage.getItem('order');  // Lo traigo
-            productsCart = JSON.parse(productsCart);       // Y lo convierto a JSON
+        if (!disableCart){
+            let productsCart = [];
 
-            if (productsCart.filter((e) => e.id === product.id).length > 0){  // Si este producto ya existe en el carrito
-                productsCart.forEach((p,i)=>{
-                if (p.id === product.id){
-                    p.cant = Number(p.cant) + Number(amount);          // Le sumo los amounts de esta card
+            if (localStorage.getItem('order')) {            // Si hay algo en el localStorage
+                productsCart = localStorage.getItem('order');  // Lo traigo
+                productsCart = JSON.parse(productsCart);       // Y lo convierto a JSON
+
+                if (productsCart.filter((e) => e.id === product.id).length > 0){  // Si este producto ya existe en el carrito
+                    productsCart.forEach((p,i)=>{
+                    if (p.id === product.id){
+                        p.cant = Number(p.cant) + Number(amount);          // Le sumo los amounts de esta card
+                    }
+                })
+                } else {                                   //  Si no no existe en el carrito
+                    productsCart.push({...product, cant: amount});  //  Lo pusheo
                 }
-            })
-            } else {                                   //  Si no no existe en el carrito
-                productsCart.push({...product, cant: amount});  //  Lo pusheo
+
+            localStorage.setItem('order', JSON.stringify(productsCart))   // Y subo al localStorage
+
+            } else {                                           // Si no hay nada en el localStorage
+            productsCart.push({...product, cant: amount});    //  Lo pusheo
+            localStorage.setItem('order', JSON.stringify(productsCart))   // Y subo al localStorage
             }
+            toast.success('Producto Agregado al carrito');
 
-          localStorage.setItem('order', JSON.stringify(productsCart))   // Y subo al localStorage
-
-        } else {                                           // Si no hay nada en el localStorage
-          productsCart.push({...product, cant: amount});    //  Lo pusheo
-          localStorage.setItem('order', JSON.stringify(productsCart))   // Y subo al localStorage
         }
-        toast.success('Producto Agregado al carrito');
     }
 
     const handleSelect = function(e){
