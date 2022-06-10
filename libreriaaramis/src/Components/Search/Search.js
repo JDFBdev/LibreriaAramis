@@ -7,11 +7,13 @@ import Cart from '../Cart/Cart';
 import Transition from '../Transition/Transition';
 import { useModal } from 'react-hooks-use-modal';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 export default function Search(){
     const [products, setProducts] = useState([]);
     const [Modal, open] = useModal('root', { preventScroll: false, closeOnOverlayClick: true});
     const skeletonCards = [0,1,2,3,4,5,6,7,8,9];
+    let { param } = useParams();
 
     useEffect(()=>{
         window.scrollTo(0, 0);
@@ -27,7 +29,7 @@ export default function Search(){
         <div className={s.container}>
             <Navbar open={open}/>
             <div className={s.content}>
-                <h2 className={s.title}>Resultados para Lapiceras</h2>
+                <h2 className={s.title}>Resultados para {param}</h2>
                 <div className={s.data}>
                     <div className={s.filters}>
                         <select className={s.selector}>
