@@ -11,9 +11,9 @@ function App() {
       <Toaster/>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />}/>
+          <Route path="/kYWQ8vVKstxY8C2n" element={<Home />}/>
           <Route path="/Search" element={<Search />}/>
-          <Route path="/kYWQ8vVKstxY8C2n" element={<Admin />}/>
+          <Route path="/" element={<Admin />}/>
         </Routes>
       </BrowserRouter>
       </>
