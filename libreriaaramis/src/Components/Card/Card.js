@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 const selector = Array.from(Array(26).keys());
 selector.shift();
 
-export default function Card({product, disableCart}){
+export default function Card({product, disableCart, responsive}){
     const [amount, setAmount] = useState(1)
 
     const handleCarrito = function(){
@@ -45,7 +45,7 @@ export default function Card({product, disableCart}){
     }
 
     return(
-        <div className={s.container}>
+        <div className={ responsive ?  s.responsiveContainer : s.container}>
             <div className={s.imgContainer}>
                 {
                     product && product.imagen ?
@@ -55,11 +55,11 @@ export default function Card({product, disableCart}){
             </div>
             <div className={s.content}>
                 <div className={s.data}>
-                    <div className={s.titleContainer}>
+                    <div className={responsive ? s.responsiveTitleContainer : s.titleContainer}>
                     {
                         product ? 
-                        <h4 className={s.title}>{product.nombre}</h4>:
-                        <h4 className={s.title}> </h4>
+                        <h4 className={responsive ? s.responsiveTitle : s.title}>{product.nombre}</h4>:
+                        <h4 className={responsive ? s.responsiveTitle : s.title}> </h4>
                     }
                     </div>
                     <select className={s.selector} onChange={handleSelect}>
@@ -70,7 +70,7 @@ export default function Card({product, disableCart}){
                         }
                     </select>
                 </div>
-                <button className={s.btnCart} onClick={handleCarrito}>Agregar al carrito</button>
+                <button className={ responsive ? s.responsiveBtnCart : s.btnCart} onClick={handleCarrito}>Agregar al carrito</button>
             </div>
         </div>
     )

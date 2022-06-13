@@ -34,7 +34,7 @@ export default function Home() {
 
   return (
     <div style={{backgroundColor: '#F4F5F6'}}>
-      <Navbar open={open}/>
+      <Navbar open={open} products={products.slice(0,8)}/>
       <div className={s.content}>
         <SwiperMain/>
         <div className={s.categories}>
@@ -54,11 +54,11 @@ export default function Home() {
             <img className={s.categoryIMG} src={escolar} alt='Escolar'/>
             <div className={s.categoryLabel}>Escolar</div>
           </div>
-          <div className={s.category} onClick={()=>Navigate('/Search/computacion')}>
+          <div className={s.category} onClick={()=>Navigate('/Search/Computacion')}>
             <img className={s.categoryIMG} src={computacion} alt='computacion'/>
             <div className={s.categoryLabel}>Computación</div>
           </div>
-          <div className={s.category} onClick={()=>Navigate('/Search/mochilas')}>
+          <div className={s.category} onClick={()=>Navigate('/Search/Mochilas')}>
             <img className={s.categoryIMG} src={mochilas} alt='mochilas'/>
             <div className={s.categoryLabel}>Mochilas</div>
           </div>
