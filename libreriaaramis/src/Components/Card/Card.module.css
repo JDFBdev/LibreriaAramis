@@ -1,4 +1,5 @@
-.container{
+.container,
+.responsiveContainer{
     width: 220px;
     height: 380px;
     border-radius: .4rem;
@@ -47,13 +48,15 @@
     gap: 1rem;
 }
 
-.titleContainer{
+.titleContainer,
+.responsiveTitleContainer{
     width: 100%;
-    height: 4.85rem;
+    height: 4.8rem;
     overflow: hidden;
 }
 
-.title{
+.title,
+.responsiveTitle{
     font-size: 1.2rem;
     font-family: 'Montserrat';
     font-weight: 600;
@@ -76,7 +79,9 @@
     outline: none;
 }
 
-.btnCart{
+.btnCart,
+.responsiveBtnCart{
+    white-space: nowrap;
     width: 100%;
     height: 55px;
     border: none;
@@ -87,4 +92,37 @@
     margin: 0;
     color: rgb(255, 255, 255);
     cursor: pointer;
+}
+
+ @media (max-width: 480px) {
+
+    .responsiveContainer{
+        width: 190px;
+    }
+
+    .responsiveTitle{
+        font-size: 1rem;
+    }
+
+    .responsiveBtnCart{
+        height: 49px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 420px) {
+
+    .responsiveContainer{
+        width: 150px;
+        height: 350px;
+    }
+
+    .responsiveTitleContainer{
+        height: 3.8rem;
+    }
+
+    .responsiveBtnCart{
+        height: 45px;
+        font-size: .8rem;
+    }
 }

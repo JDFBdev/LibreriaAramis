@@ -34,32 +34,32 @@ export default function Home() {
 
   return (
     <div style={{backgroundColor: '#F4F5F6'}}>
-      <Navbar open={open}/>
+      <Navbar open={open} products={products.slice(0,8)}/>
       <div className={s.content}>
         <SwiperMain/>
         <div className={s.categories}>
-          <div className={s.category} onClick={()=>Navigate('/Search')} >
+          <div className={s.category} onClick={()=>Navigate('/Search/Escritura')} >
             <img className={s.categoryIMG} src={escritura} alt='Escritura'/>
             <div className={s.categoryLabel}>Escritura</div>
           </div>
-          <div className={s.category} onClick={()=>Navigate('/Search')}>
+          <div className={s.category} onClick={()=>Navigate('/Search/Oficina')}>
             <img className={s.categoryIMG} src={oficina} alt='Oficina'/>
             <div className={s.categoryLabel}>Oficina</div>
           </div>
-          <div className={s.category} onClick={()=>Navigate('/Search')}>
+          <div className={s.category} onClick={()=>Navigate('/Search/Resmas')}>
             <img className={s.categoryIMG} src={resmas} alt='Resmas'/>
             <div className={s.categoryLabel}>Resmas</div>
           </div>
-          <div className={s.category} onClick={()=>Navigate('/Search')} >
-            <img className={s.categoryIMG} src={escolar} alt='Escritura'/>
+          <div className={s.category} onClick={()=>Navigate('/Search/Escolar')} >
+            <img className={s.categoryIMG} src={escolar} alt='Escolar'/>
             <div className={s.categoryLabel}>Escolar</div>
           </div>
-          <div className={s.category} onClick={()=>Navigate('/Search')}>
-            <img className={s.categoryIMG} src={computacion} alt='Oficina'/>
+          <div className={s.category} onClick={()=>Navigate('/Search/Computacion')}>
+            <img className={s.categoryIMG} src={computacion} alt='computacion'/>
             <div className={s.categoryLabel}>Computación</div>
           </div>
-          <div className={s.category} onClick={()=>Navigate('/Search')}>
-            <img className={s.categoryIMG} src={mochilas } alt='Resmas'/>
+          <div className={s.category} onClick={()=>Navigate('/Search/Mochilas')}>
+            <img className={s.categoryIMG} src={mochilas} alt='mochilas'/>
             <div className={s.categoryLabel}>Mochilas</div>
           </div>
         </div>

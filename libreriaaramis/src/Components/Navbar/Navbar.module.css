@@ -6,7 +6,7 @@
     align-items: center;
     height: 17vh;
     box-shadow: 0 5px 8px 0 rgba(0,0,0,.2);
-    background-color: #F4F5F6;
+    background-color: #f4f6f4;
 }
 
 .content{
@@ -29,12 +29,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
 }
 
 .form{
     display: flex;
     flex-direction: row;
+    position: relative;
 }
 
 .input{
@@ -75,8 +75,23 @@
 .lupa{
     width: 1.7rem;
     height: 1.7rem;
-    
 }
+
+.browser{
+    position: absolute;
+    width: 510px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+    background-color: white;
+    border-radius: .4rem;
+    z-index: 100;
+}
+
 
 .logos{
     display: flex;
@@ -120,6 +135,10 @@
         width: 20rem;
     }
 
+    .browser{
+        width: 345px;
+    }
+
 }
 
 @media (max-width: 900px) {
@@ -148,6 +167,10 @@
         width: 15rem;
     }
 
+    .browser{
+        width: 265px;
+    }
+
 }
 
 @media (max-width: 550px) {
@@ -166,5 +189,9 @@
 
     .input::placeholder {
         font-size: .8rem;
+    }
+
+    .browser{
+        width: 220px;
     }
 }
