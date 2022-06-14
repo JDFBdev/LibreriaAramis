@@ -64,7 +64,7 @@ export default function Card({product, disableCart, responsive}){
                     </div>
                     <select className={s.selector} onChange={handleSelect}>
                         {
-                            selector.map((o,i)=>{
+                            selector.map((o)=>{
                                 return <option value={o} key={o} >{o}</option>
                             })
                         }

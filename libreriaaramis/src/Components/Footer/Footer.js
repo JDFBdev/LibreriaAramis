@@ -25,14 +25,14 @@ export default function Footer(){
                 Sabados 10:30 - 14:30hs
             </p>
             <div className={s.logos}>
-                <div className={s.logoContainer}>
-                    <img className={s.logo} src={instagram} alt='Instagram Logo' onClick={() => {window.open('https://www.instagram.com/libreriaaramis/','_blank')}}/>
+                <div className={s.logoContainer} onClick={() => {window.open('https://www.instagram.com/libreriaaramis/','_blank')}}>
+                    <img className={s.logo} src={instagram} alt='Instagram Logo' />
                 </div> 
-                <div className={s.logoContainer}>
-                    <img className={s.logo} src={wpp} alt='Whatsapp Logo' onClick={handleWasap}/>
+                <div className={s.logoContainer} onClick={handleWasap}>
+                    <img className={s.logo} src={wpp} alt='Whatsapp Logo' />
                 </div>
-                <div className={s.logoContainer}>
-                    <img className={s.logo} src={facebook} alt='Facebook Logo' onClick={() => {window.open('https://www.facebook.com/AramisLibreria','_blank')}}/>
+                <div className={s.logoContainer} onClick={() => {window.open('https://www.facebook.com/AramisLibreria','_blank')}}>
+                    <img className={s.logo} src={facebook} alt='Facebook Logo' />
                 </div>
             </div>
             <p className={s.p}>libreriaaramis@gmail.com</p>
