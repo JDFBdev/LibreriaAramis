@@ -11,19 +11,20 @@ import { useParams } from 'react-router-dom';
 import Pagination from './Pagination/Pagination';
 
 export default function Search(){
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState(null);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(20);
     const [Modal, open] = useModal('root', { preventScroll: false, closeOnOverlayClick: true});
     const skeletonCards = [0,1,2,3,4,5,6,7,8,9];
     let { param } = useParams();
+    let currentPosts = []
 
     useEffect(()=>{
         window.scrollTo(0, 0);
         async function fetchData() {
             let promise = await axios.get(`https://aramis-backend.herokuapp.com/buscador/${param}`)
-            let response = promise.data;
+            let response = promise.data; 
             setProducts(response);
         }
         fetchData();
@@ -31,7 +32,12 @@ export default function Search(){
 
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = products.slice(indexOfFirstPost, indexOfLastPost);
+    if(products){
+        if(products[0]){
+        currentPosts = products.slice(indexOfFirstPost, indexOfLastPost);
+        }
+    }
+    
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
     useEffect(()=>{
@@ -43,11 +49,16 @@ export default function Search(){
         <div className={s.container}>
             <Navbar open={open}/>
             <div className={s.content}>
-                <h2 className={s.title}>Resultados para {param}</h2>
+                {
+                    products && products[0]  ? 
+                    <h2 className={s.title}>Resultados para {param}</h2>:
+                    <h2 className={s.title}>No hay resultados para {param}</h2>
+                }
+                
                 <div className={s.data}>
                     <div className={s.cards}>
                         {
-                            products[0] && !loading ? 
+                            products && !loading ? 
                             currentPosts?.map((p)=>{
                                 return <Card key={p.id} product={p} responsive={true} />
                             }) :
@@ -67,7 +78,7 @@ export default function Search(){
                     <div className={s.pagination}>
                         <Pagination
                             postsPerPage={postsPerPage}
-                            totalPosts={products.length}
+                            totalPosts={products?.length}
                             paginate={paginate}
                         />
                     </div>
