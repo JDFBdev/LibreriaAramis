@@ -9,7 +9,7 @@ import Lupa from '../../img/lupa.png';
 import { isMobile } from 'react-device-detect';
 import NavbarCard from './NavbarCard/NavbarCard';
 
-export default function Navbar({open, products}) {
+export default function Navbar({open}) {
     const [input, setInput] = useState('');
     // const [products, setProucts] = useState([]);
     const Navigate = useNavigate();
@@ -30,13 +30,13 @@ export default function Navbar({open, products}) {
         <img className={s.aramisLogo} src={Logo} alt='Aramis Logo' onClick={()=> Navigate('/')}/>
         <div className={s.content}>
             <div className={s.search}>
-                <form className={s.form} onSubmit={()=> Navigate(`/Search/${input}`)}>
+                <form className={s.form} onSubmit={()=> {if(input !== ''){Navigate(`/Search/${input}`)}}}>
                     <input className={s.input} onChange={handleInput} placeholder='Encontra lo que buscas...'/>
-                    <div className={s.lupaContainer} onClick={()=> Navigate(`/Search/${input}`)} type='submit'>
+                    <button className={s.lupaContainer} type='submit'>
                         <img className={s.lupa} src={Lupa} alt='Lupa'/>
-                    </div>
+                    </button>
                 </form>
-                {
+                {/* {
                     input.length > 2 && 
                     <div className={s.browser} style={{marginTop: `${products.length*80 + 30 - (products.length >= 4 ? products.length *14 : 0)}px`}}>
                         {
@@ -47,7 +47,7 @@ export default function Navbar({open, products}) {
                             <NavbarCard />
                         }
                     </div>
-                }
+                } */}
             </div>
             <div className={s.logos}>
                 <div className={s.logoContainer} onClick={() => {window.open('https://www.instagram.com/libreriaaramis/','_blank')}}>
