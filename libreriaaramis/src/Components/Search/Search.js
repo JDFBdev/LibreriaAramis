@@ -54,7 +54,6 @@ export default function Search(){
                     <h2 className={s.title}>Resultados para {param}</h2>:
                     <h2 className={s.title}>No hay resultados para {param}</h2>
                 }
-                
                 <div className={s.data}>
                     <div className={s.cards}>
                         {
