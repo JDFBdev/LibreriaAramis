@@ -31,11 +31,11 @@ export default function Cart(){
         e.preventDefault();
 
         isMobile ?
-        window.open(`https://api.whatsapp.com/send?phone=+5491168803383&text=Buen día! Quisiera pedir presupuesto para el sigueinte pedido:%0a${
+        window.open(`https://api.whatsapp.com/send?phone=+5491168803383&text=Buen día! Quisiera pedir presupuesto para el siguiente pedido:%0a${
             products.map((p)=>{
             return `• ${p.nombre}, ${p.cant} ${p.cant === 1 ? 'unidad' : 'unidades'}.%0a`
         }).join('')}&app_absent=0`,'_blank') : 
-        window.open(`https://web.whatsapp.com/send?phone=+5491168803383&text=Buen día! Quisiera pedir presupuesto para el sigueinte pedido:%0a${
+        window.open(`https://web.whatsapp.com/send?phone=+5491168803383&text=Buen día! Quisiera pedir presupuesto para el siguiente pedido:%0a${
             products.map((p)=>{
             return `• ${p.nombre}, ${p.cant} ${p.cant === 1 ? 'unidad' : 'unidades'}.%0a`
         }).join('')}&app_absent=0`,'_blank');
