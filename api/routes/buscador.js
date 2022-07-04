@@ -4,28 +4,49 @@ const Productos = require('../models/productos');
 const router = express.Router();
 
 router.get('/:param', async (req, res) => {
-    let {param} = req.params
     const categorias = ["Escritura", "Oficina", "Mochilas", "Resmas", "Escolar", "Computacion"];
-    const esCategoria = categorias.find(categoria => {
-        return param.toLowerCase() === categoria.toLowerCase();
-      });
+    var productosNombre = [];
+    let {param} = req.params;
+    const inputs = param.split(" ");
+    inputs.forEach(input => {
+        const index = inputs.indexOf(input);
+        if (input.length <= 3) {
+            inputs.splice(index, 1);
+        }
+    });
+    if (inputs.length == 1) {
+        var esCategoria = categorias.find(categoria => {
+            return inputs[0].toLowerCase() === categoria.toLowerCase();
+        });
+    }
     try {
         if (esCategoria) {
             var productosCategoria = await Productos.findAll({
                 where: {
                     "categoria": {
-                        [Op.iLike]: param
+                        [Op.iLike]: inputs[0]
                     }
                 }
             });
         } else {
-            var productosNombre = await Productos.findAll({
-                where: {
-                    "nombre": {
-                        [Op.iLike]: `%${param}%`
+            let promesas = [];
+            inputs.forEach(input => {
+                promesas.push( Productos.findAll({
+                    where: {
+                        "nombre": {
+                            [Op.iLike]: `%${input}%`
+                        }
                     }
-                }
+                }))
             });
+            await Promise.all(promesas).then(values => {
+                values.sort(function (a, b) {
+                    return a.length - b.length;
+                });
+                values.forEach(value => {
+                    productosNombre = productosNombre.concat(value);
+                });
+            })
         }
     }
     catch(err) {
