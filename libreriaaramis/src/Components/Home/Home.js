@@ -18,14 +18,14 @@ import axios from 'axios';
 
 export default function Home() {
 
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState({escolar: [], oficina: []});
   const [Modal, open] = useModal('root', { preventScroll: false, closeOnOverlayClick: true});
   const Navigate = useNavigate();
 
   useEffect(()=>{
     window.scrollTo(0, 0);
     async function fetchData() {
-        let promise = await axios.get(`https://aramis-backend.herokuapp.com/todosProductos`)
+        let promise = await axios.get(`https://aramis-backend.herokuapp.com/destacados`)
         let response = promise.data;
         setProducts(response);
     }
@@ -34,7 +34,7 @@ export default function Home() {
 
   return (
     <div style={{backgroundColor: '#F4F5F6'}}>
-      <Navbar open={open} products={products.slice(0,8)}/>
+      <Navbar open={open}/>
       <div className={s.content}>
         <SwiperMain/>
         <div className={s.categories}>
@@ -64,8 +64,12 @@ export default function Home() {
           </div>
         </div>
         <div className={s.moduleContainer}>
-          <h2 className={s.moduleTitle}>Nuestros Productos Mas Vendidos</h2>
-          <SwiperProducts products={products}/>
+          <h2 className={s.moduleTitle}>Mas vendidos: Oficina</h2>
+          <SwiperProducts products={products.oficina}/>
+        </div>
+        <div className={s.moduleContainer}>
+          <h2 className={s.moduleTitle}>Mas vendidos: Escolar</h2>
+          <SwiperProducts products={products.escolar}/>
         </div>
         <div className={s.moduleContainer}>
           <h2 className={s.moduleTitle}>Drysdale 5675, Carapachay, Vicente López, Buenos Aires</h2>

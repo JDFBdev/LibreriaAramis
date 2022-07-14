@@ -95,6 +95,8 @@
 
     .img{
         margin-left: 11rem;
+        margin-top: 0rem;
+        width: 80%;
     }
 
     .title{
@@ -111,9 +113,9 @@
 @media (max-width: 520px) {
 
     .img{
-        margin-top: -6rem;
-        width: 120%;
-        margin-left: 6rem;
+        margin-top: -2rem;
+        width: 80%;
+        margin-left: 8rem;
     }
 }
 
@@ -125,8 +127,9 @@
     }
 
     .img{
-        margin-top: -4rem;
-        margin-left: 8rem;
+        margin-top: 0rem;
+        margin-left: 5rem;
+        width: 80%;
     }
 
     .title{

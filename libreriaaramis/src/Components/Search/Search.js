@@ -11,7 +11,7 @@ import { useParams } from 'react-router-dom';
 import Pagination from './Pagination/Pagination';
 
 export default function Search(){
-    const [products, setProducts] = useState(null);
+    const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(20);
@@ -23,9 +23,11 @@ export default function Search(){
     useEffect(()=>{
         window.scrollTo(0, 0);
         async function fetchData() {
+            setLoading(true);
             let promise = await axios.get(`https://aramis-backend.herokuapp.com/buscador/${param}`)
             let response = promise.data; 
             setProducts(response);
+            setLoading(false);
         }
         fetchData();
     },[])
@@ -49,10 +51,12 @@ export default function Search(){
         <div className={s.container}>
             <Navbar open={open}/>
             <div className={s.content}>
-                {
-                    products && products[0]  ? 
+            {
+                    !loading ? 
+                    products[0] ? 
                     <h2 className={s.title}>Resultados para {param}</h2>:
-                    <h2 className={s.title}>No hay resultados para {param}</h2>
+                    <h2 className={s.title}>No hay resultados para {param}</h2> :
+                    <h2 className={s.title}>Buscando...</h2>
                 }
                 <div className={s.data}>
                     <div className={s.cards}>
