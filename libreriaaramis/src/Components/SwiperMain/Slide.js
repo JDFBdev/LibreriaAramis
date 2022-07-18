@@ -9,7 +9,7 @@ import img3 from '../../img/slideIMG4.jpg';
 
 const data = [{
     title: 'Visita nuestro local!',
-    text: 'Escolar - Comercial - Computación - Artística - Resmas - Mochilas. Lunes a Viernes de 7:15 a 13hs y de 15:30 a 19hs. Sabados de 10 a 13hs',
+    text: 'Escolar - Comercial - Computación - Artística - Resmas - Mochilas. Lunes a Viernes de 9 a 13hs y de 16 a 19hs. Sabados de 10 a 13hs',
     div: green,
     img: img1
 },

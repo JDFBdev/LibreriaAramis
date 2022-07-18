@@ -58,8 +58,8 @@ export default function Card({product, disableCart, responsive}){
                     <div className={responsive ? s.responsiveTitleContainer : s.titleContainer}>
                     {
                         product ? 
-                        <h4 className={responsive ? s.responsiveTitle : s.title}>{product.nombre}</h4>:
-                        <h4 className={responsive ? s.responsiveTitle : s.title}> </h4>
+                        <h4 translate="no" className={responsive ? s.responsiveTitle : s.title}>{product.nombre}</h4>:
+                        <h4 translate="no" className={responsive ? s.responsiveTitle : s.title}> </h4>
                     }
                     </div>
                     <select className={s.selector} onChange={handleSelect}>

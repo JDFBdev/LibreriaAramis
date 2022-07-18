@@ -72,7 +72,7 @@ export default function Home() {
           <SwiperProducts products={products.escolar}/>
         </div>
         <div className={s.moduleContainer}>
-          <h2 className={s.moduleTitle}>Drysdale 5675, Carapachay, Vicente López, Buenos Aires</h2>
+          <h2 translate='no' className={s.moduleTitle}>Drysdale 5675, Carapachay, Vicente López, Buenos Aires</h2>
           <iframe title='Maps' src={`https://maps.google.com/maps?q=-34.527348126436884,-58.53490686416626&output=svembed`} className={s.iframe} allowFullScreen></iframe>
         </div>
         <Footer/>
