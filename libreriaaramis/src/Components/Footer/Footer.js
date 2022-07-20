@@ -22,7 +22,7 @@ export default function Footer(){
             <img className={s.aramis} src={aramis} alt='Aramis Logo' onClick={()=>Navigate('/')}/>
             <p className={s.p}> 
                 Lunes a Viernes de 9 a 13hs y de 16 a 19hs<br/>
-                Sabados de 10 a 15hs
+                Sabados de 10 a 13hs
             </p>
             <div className={s.logos}>
                 <div className={s.logoContainer} onClick={() => {window.open('https://www.instagram.com/libreriaaramis/','_blank')}}>
