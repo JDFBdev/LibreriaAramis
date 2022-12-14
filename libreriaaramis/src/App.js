@@ -10,14 +10,14 @@ function App() {
   return (
     <>
       <Toaster/>
-      <Mantenimiento/>
-      {/* <BrowserRouter>
+      {/* <Mantenimiento/> */}
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />}/>
           <Route path="/Search/:param" element={<Search />}/>
           <Route path="/*" element={<NotFound/>} />
         </Routes>
-      </BrowserRouter> */}
+      </BrowserRouter>
       </>
   );
 }

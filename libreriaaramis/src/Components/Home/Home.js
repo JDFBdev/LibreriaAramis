@@ -25,7 +25,7 @@ export default function Home() {
   useEffect(()=>{
     window.scrollTo(0, 0);
     async function fetchData() {
-        let promise = await axios.get(`https://aramis-backend.herokuapp.com/destacados`)
+        let promise = await axios.get(`https://aramis-backend.onrender.com/destacados`)
         let response = promise.data;
         setProducts(response);
     }
