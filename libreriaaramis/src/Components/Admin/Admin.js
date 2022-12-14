@@ -27,7 +27,7 @@ export default function Admin(){
     useEffect(()=>{  // Obtengo data de productos
         window.scrollTo(0, 0);
         async function fetchData() {
-            let promise = await axios.get(`https://aramis-backend.herokuapp.com/todosProductos`)
+            let promise = await axios.get(`https://aramis-backend.onrender.com/todosProductos`)
             let response = promise.data;
             setProducts(response);
         }
@@ -73,7 +73,7 @@ export default function Admin(){
 
     const hanldeSubmit = async function(){  // Posteamos el producto
 
-        let promise = await axios.post(`https://aramis-backend.herokuapp.com/crearProducto`,{
+        let promise = await axios.post(`https://aramis-backend.onrender.com/crearProducto`,{
             nombre: input.title,
             imagen: url,
             categoria: input.category
@@ -117,7 +117,7 @@ export default function Admin(){
 
     const hanldeSubmitModificar = async function(image){  // Posteamos el cambio, con imagen anterior o con imagen nueva
 
-        let promise = await axios.post(`https://aramis-backend.herokuapp.com/editarProducto`,{
+        let promise = await axios.post(`https://aramis-backend.onrender.com/editarProducto`,{
             nombre: selected.nombre,
             imagen: image ? modifyUrl : selected.imagen,
             categoria: selected.categoria,
@@ -141,7 +141,7 @@ export default function Admin(){
     const handleDelete = async function(e){  // Borramos el producto
         e.preventDefault();
         openLoading();
-        let promise = await axios.post(`https://aramis-backend.herokuapp.com/borrarProducto`,{
+        let promise = await axios.post(`https://aramis-backend.onrender.com/borrarProducto`,{
             id: selected.id
         })
         let response = promise.data;
