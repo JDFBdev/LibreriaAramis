@@ -19,8 +19,11 @@ router.use('/buscarProducto', buscarProducto);
 const buscador = require('./buscador');
 router.use('/buscador', buscador);
 
-const buscadorNavbar = require('./buscadorNavbar');
-router.use('/buscadorNavbar', buscadorNavbar);
+const buscadorProto = require('./buscadorProto');
+router.use('/buscadorProto', buscadorProto);
+
+const destacados = require('./destacados');
+router.use('/destacados', destacados);
 
 /* GET home page. */
 router.get('/', (req, res) => {
